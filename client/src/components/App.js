@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import '../styles/App.css';
+import Home from './Home';
+import Header from './Header';
+import { BrowserRouter, Route } from 'react-router-dom';
 import '../styles/index.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Zimmerbot</h1>
-        <p className="Wikimedia"> Wikimedia Foundation </p>
+        <BrowserRouter>
+          <div>
+            <Header />
+            <Route exact path="/" component={Home} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }

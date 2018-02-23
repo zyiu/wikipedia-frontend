@@ -5,8 +5,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <h1>Zimmerbot</h1>
-        <img src={wiki_logo} alt={'Wikimedia Logo'} />
+        <h1>ZimmerBot <img src={wiki_logo} alt={'Wikimedia Logo'} /> </h1>
       </div>
     );
   }

@@ -5,10 +5,18 @@ body {
   box-sizing: border-box;
 }
 
-.Wikimedia {
-  font-size: 100px;
+.header {
+  position: relative;
+  text-align: center;
+  font-size: 40px;
+  display: inline;
+
 }
 
-.header {
-  align-items: center;
+.Home{
+	margin: 0 auto;
+	display: block;
 }
+
+
+

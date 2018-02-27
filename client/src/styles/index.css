@@ -6,17 +6,12 @@ body {
 }
 
 .header {
-  position: relative;
   text-align: center;
-  font-size: 40px;
+  font-size: 250%;
   display: inline;
-
+  justify-content: space-around;
 }
 
-.Home{
-	margin: 0 auto;
-	display: block;
+.searchbar {
+  background-color: blue;
 }
-
-
-

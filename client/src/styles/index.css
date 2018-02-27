@@ -13,5 +13,6 @@ body {
 }
 
 .searchbar {
-  background-color: blue;
+  margin-top: 5%;
+  text-align: center;
 }

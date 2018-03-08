@@ -1,3 +1,9 @@
+/* Variables */
+:root {
+}
+
+/* Styles */
+
 body {
   margin: 0;
   padding: 0;
@@ -15,4 +21,9 @@ body {
 .searchbar {
   margin-top: 5%;
   text-align: center;
+}
+
+/* Mobile Styling */
+
+@media all and (max-width: 450px) {
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 import wiki_logo from '../wiki_logo.png';
 
 class Header extends React.Component {
@@ -11,10 +11,13 @@ class Header extends React.Component {
     const { activeItem } = this.state;
     return (
       <div className="header">
-        <Menu color="olive">
-          <Menu.Item header>ZimmerBot</Menu.Item>
-          <Menu.Item header position="right">
-            <img src={wiki_logo} alt={'Wikimedia Logo'} />
+        <Menu size="large" widths="5" borderless className="menu">
+          <Menu.Item header>
+            <Icon name="home" />
+          </Menu.Item>
+          <Menu.Item>About Us</Menu.Item>
+          <Menu.Item header>
+            <Icon name="sidebar" />
           </Menu.Item>
         </Menu>
       </div>

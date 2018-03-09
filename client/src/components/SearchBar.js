@@ -15,6 +15,7 @@ class SearchBar extends React.Component {
       <div className="searchbar">
         <Search
           size="huge"
+          icon=""
           showNoResults={false}
           onSearchChange={this.handleSearchChange}
           value={this.state.value}

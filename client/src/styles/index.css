@@ -13,9 +13,17 @@ body {
 
 .header {
   text-align: center;
-  font-size: 250%;
-  display: inline;
-  justify-content: space-around;
+  font-size: 220%;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#search-button {
+  margin-top: 5em;
 }
 
 .searchbar {

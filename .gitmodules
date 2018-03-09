@@ -1,0 +1,3 @@
+[submodule "zimmerbot"]
+	path = zimmerbot
+	url = https://github.com/indianwolverine/zimmerbot.git

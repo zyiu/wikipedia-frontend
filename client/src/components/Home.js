@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import AdvancedSettings from './AdvancedSettings';
 import { Button } from 'semantic-ui-react';
 
 class Home extends React.Component {
@@ -15,6 +16,9 @@ class Home extends React.Component {
             icon="search"
             size="large"
           />
+        </div>
+        <div className="advanced">
+          <AdvancedSettings />
         </div>
       </div>
     );

@@ -11,7 +11,6 @@ const language = [{ key: 'english', text: 'English', value: 'english' }];
 const filter = [
   { key: 'popularity', text: 'Popularity', value: 'popularity' },
   { key: 'quality', text: 'Quality', value: 'quality' },
-  { key: 'popularity', text: 'Popularity', value: 'popularity' },
   { key: 'linked', text: 'Linked To', value: 'linked' },
   { key: 'score', text: 'Article Score', value: 'score' }
 ];
@@ -29,37 +28,40 @@ class AdvancedSettings extends React.Component {
   render() {
     const { value } = this.state;
     return (
-      <Form>
-        <Form.Group widths="equal">
-          <Form.Select
-            fluid
-            label="Search For"
-            options={search}
-            placeholder="Articles"
-          />
-          <Form.Select
-            fluid
-            label="Language"
-            options={language}
-            placeholder="English"
-          />
-        </Form.Group>
+      <div>
+        <h3>Advanced Settings</h3>
+        <Form>
+          <Form.Group widths="equal">
+            <Form.Select
+              fluid
+              label="Search For"
+              options={search}
+              placeholder="Articles"
+            />
+            <Form.Select
+              fluid
+              label="Language"
+              options={language}
+              placeholder="English"
+            />
+          </Form.Group>
 
-        <Form.Group widths="equal">
-          <Form.Select
-            fluid
-            label="Filter By"
-            options={filter}
-            placeholder="Popularity"
-          />
-          <Form.Select
-            fluid
-            label="Limit By"
-            options={limit}
-            placeholder="Number of Articles"
-          />
-        </Form.Group>
-      </Form>
+          <Form.Group widths="equal">
+            <Form.Select
+              fluid
+              label="Filter By"
+              options={filter}
+              placeholder="Popularity"
+            />
+            <Form.Select
+              fluid
+              label="Limit By"
+              options={limit}
+              placeholder="Number of Articles"
+            />
+          </Form.Group>
+        </Form>
+      </div>
     );
   }
 }

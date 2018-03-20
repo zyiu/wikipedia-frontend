@@ -8,19 +8,16 @@ class SearchBar extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get('http://127.0.0.1:5000/category-autocomplete', {
-        params: {
-          prefix: 'ad',
-          language: 'en'
-        }
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:5000/category-autocomplete',
+      data: {
+        language: 'en',
+        prefix: 'dog'
+      }
+    }).then(response => {
+      console.log(response);
+    });
   }
 
   handleSearchChange = event => {

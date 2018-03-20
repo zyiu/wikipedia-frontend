@@ -6,7 +6,10 @@ const search = [
   { key: 'categories', text: 'Categories', value: 'categories' }
 ];
 
-const language = [{ key: 'english', text: 'English', value: 'english' }];
+const language = [
+  { key: 'english', text: 'English', value: 'english' },
+  { key: 'spanish', text: 'Spanish', value: 'spanish' }
+];
 
 const filter = [
   { key: 'popularity', text: 'Popularity', value: 'popularity' },

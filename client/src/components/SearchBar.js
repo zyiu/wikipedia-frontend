@@ -4,35 +4,50 @@ import axios from 'axios';
 
 class SearchBar extends React.Component {
   state = {
-    value: ''
+    value: '',
+    categories: [],
+    loading: false
   };
 
-  componentDidMount() {
+  autocomplete(event) {
+    this.setState({ value: event.target.value, categories: [], loading: true });
+
     axios({
       method: 'post',
       url: 'http://127.0.0.1:5000/category-autocomplete',
       data: {
         language: 'en',
-        prefix: 'dog'
+        prefix: this.state.value
       }
     }).then(response => {
-      console.log(response);
+      const categories = response.data.categories;
+
+      if (categories) {
+        categories.map(category => {
+          this.state.categories.push({ title: category });
+        });
+      }
+      this.setState({ loading: false });
     });
   }
 
-  handleSearchChange = event => {
-    this.setState({ value: event.value });
-  };
+  handleResultSelect = (e, { result }) =>
+    this.setState({ value: result.title });
 
   render() {
+    const { value, categories, loading } = this.state;
+
     return (
       <div className="searchbar">
         <Search
           size="huge"
           icon=""
+          loading={loading}
           showNoResults={false}
-          onSearchChange={this.handleSearchChange}
-          value={this.state.value}
+          onSearchChange={this.autocomplete.bind(this)}
+          onResultSelect={this.handleResultSelect}
+          results={categories}
+          value={value}
         />
       </div>
     );

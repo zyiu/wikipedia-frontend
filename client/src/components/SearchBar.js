@@ -11,24 +11,25 @@ class SearchBar extends React.Component {
 
   autocomplete(event) {
     this.setState({ value: event.target.value, categories: [], loading: true });
+    setTimeout(() => {
+      axios({
+        method: 'post',
+        url: 'http://127.0.0.1:5000/category-autocomplete',
+        data: {
+          language: 'en',
+          prefix: this.state.value
+        }
+      }).then(response => {
+        const categories = response.data.categories;
 
-    axios({
-      method: 'post',
-      url: 'http://127.0.0.1:5000/category-autocomplete',
-      data: {
-        language: 'en',
-        prefix: this.state.value
-      }
-    }).then(response => {
-      const categories = response.data.categories;
-
-      if (categories) {
-        categories.map(category => {
-          this.state.categories.push({ title: category });
-        });
-      }
-      this.setState({ loading: false });
-    });
+        if (categories) {
+          categories.map(category => {
+            this.state.categories.push({ title: category });
+          });
+        }
+        this.setState({ loading: false });
+      });
+    }, 300);
   }
 
   handleResultSelect = (e, { result }) =>

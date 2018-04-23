@@ -9,11 +9,32 @@ class Home extends React.Component {
     value: '',
     categories: [],
     loading: false,
-    links: []
+    links: [],
+    method: 'articles',
+    language: 'en',
+    filter: 'popularity',
+    limit: 10
   };
   
-  handleResultSelect = (e, { result }) =>
+  handleResultSelect = (e, { result }) => 
     this.setState({ value: result.title });
+    
+  handleSearchBarChange = (e, { value }) => {
+    this.setState({ value: value });
+    this.autocomplete(e);
+  }
+    
+  handleMethodSettingsChange = (e, { value }) => 
+    this.setState({ method: value, categories: [] });
+    
+  handleLanguageSettingsChange = (e, { value }) => 
+    this.setState({ language: value });
+    
+  handleFilterSettingsChange = (e, { value }) => 
+    this.setState({ filter: value });
+    
+  handleLimitSettingsChange = (e, { value }) => 
+    this.setState({ limit: value });
   
   query(event) {
     setTimeout(() => {
@@ -21,11 +42,11 @@ class Home extends React.Component {
         method: 'post',
         url: 'http://127.0.0.1:5000/',
         data: {
-          method: 'related',
+          method: this.state.method,
           query: this.state.value,
-          language: 'en',
-          filter: 'ores_quality',
-          limit: '10',
+          language: this.state.language,
+          filter: this.state.filter,
+          limit: this.state.limit,
           stub: 'include'
         }
       }).then(response => {
@@ -42,26 +63,28 @@ class Home extends React.Component {
   }
   
   autocomplete(event) {
-    this.setState({ value: event.target.value, categories: [], loading: true });
-    setTimeout(() => {
-      axios({
-        method: 'post',
-        url: 'http://127.0.0.1:5000/category-autocomplete',
-        data: {
-          language: 'en',
-          prefix: this.state.value
-        }
-      }).then(response => {
-        const categories = response.data.categories;
+    if (this.state.method == "category") {
+      this.setState({ categories: [], loading: true });
+      setTimeout(() => {
+        axios({
+          method: 'post',
+          url: 'http://127.0.0.1:5000/category-autocomplete',
+          data: {
+            language: 'en',
+            prefix: this.state.value
+          }
+        }).then(response => {
+          const categories = response.data.categories;
 
-        if (categories) {
-          categories.map(category => {
-            this.state.categories.push({ title: category });
-          });
-        }
-        this.setState({ loading: false });
-      });
-    }, 300);
+          if (categories) {
+            categories.map(category => {
+              this.state.categories.push({ title: category });
+            });
+          }
+          this.setState({ loading: false });
+        });
+      }, 300);
+    }
   }
   
   render() {
@@ -69,7 +92,7 @@ class Home extends React.Component {
       <div>
         <div className="home">
           <SearchBar 
-            autocomplete={this.autocomplete.bind(this)} 
+            autocomplete={this.handleSearchBarChange.bind(this)} 
             loading={this.state.loading} 
             value={this.state.value} 
             categories={this.state.categories} 
@@ -85,7 +108,12 @@ class Home extends React.Component {
           />
         </div>
         <div className="advanced">
-          <AdvancedSettings />
+          <AdvancedSettings
+          handleMethodSettingsChange={this.handleMethodSettingsChange.bind(this)}
+          handleLanguageSettingsChange={this.handleLanguageSettingsChange.bind(this)}
+          handleFilterSettingsChange={this.handleFilterSettingsChange.bind(this)}
+          handleLimitSettingsChange={this.handleLimitSettingsChange.bind(this)}
+          />
         </div>
         <div className="link-container">
           <ul className="links">

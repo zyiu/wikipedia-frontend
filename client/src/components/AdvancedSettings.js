@@ -2,20 +2,24 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 
 const search = [
-  { key: 'articles', text: 'Articles', value: 'articles' },
-  { key: 'categories', text: 'Categories', value: 'categories' }
+  // { key: 'articles', text: 'Articles', value: 'articles' },
+  // { key: 'categories', text: 'Categories', value: 'categories' }
+  { key: 'individual', text: 'Articles', value: 'individual' },
+  { key: 'category', text: 'Category', value: 'category' },
+  { key: 'related', text: 'Related Articles', value: 'related' },
+  { key: 'linked', text: 'Linked', value: 'linked' }
 ];
 
 const language = [
-  { key: 'english', text: 'English', value: 'english' },
-  { key: 'spanish', text: 'Spanish', value: 'spanish' }
+  { key: 'english', text: 'English', value: 'en' },
+  { key: 'spanish', text: 'Spanish', value: 'es' }
 ];
 
 const filter = [
   { key: 'popularity', text: 'Popularity', value: 'popularity' },
-  { key: 'quality', text: 'Quality', value: 'quality' },
-  { key: 'linked', text: 'Linked To', value: 'linked' },
-  { key: 'score', text: 'Article Score', value: 'score' }
+  { key: 'quality', text: 'Quality', value: 'ores_quality' },
+  { key: 'linked', text: 'Linked To', value: 'most_linked_to' },
+  // { key: 'score', text: 'Article Score', value: 'score' }
 ];
 
 const limit = [
@@ -27,6 +31,10 @@ class AdvancedSettings extends React.Component {
   state = {};
 
   handleChange = (e, { value }) => this.setState({ value });
+  
+  test() {
+    alert(this.state.value);
+  }
 
   render() {
     const { value } = this.state;
@@ -39,12 +47,14 @@ class AdvancedSettings extends React.Component {
               fluid
               label="Search For"
               options={search}
+              onChange={this.props.handleMethodSettingsChange}
               placeholder="Articles"
             />
             <Form.Select
               fluid
               label="Language"
               options={language}
+              onChange={this.props.handleLanguageSettingsChange}
               placeholder="English"
             />
           </Form.Group>
@@ -54,13 +64,15 @@ class AdvancedSettings extends React.Component {
               fluid
               label="Filter By"
               options={filter}
+              onChange={this.props.handleFilterSettingsChange}
               placeholder="Popularity"
             />
-            <Form.Select
+            <Form.Input
               fluid
-              label="Limit By"
-              options={limit}
-              placeholder="Number of Articles"
+              label="Limit"
+              type="number"
+              onChange={this.props.handleLimitSettingsChange}
+              placeholder="10"
             />
           </Form.Group>
         </Form>
@@ -68,5 +80,13 @@ class AdvancedSettings extends React.Component {
     );
   }
 }
+
+// <Form.Select
+//   fluid
+//   label="Limit By"
+//   options={limit}
+//   onChange={this.props.handleLimitSettingsChange}
+//   placeholder="Number of Articles"
+// />
 
 export default AdvancedSettings;

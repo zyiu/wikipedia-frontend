@@ -38,6 +38,23 @@ body {
   padding: 3%;
 }
 
+.link-container {
+  justify-content: center;
+}
+
+.links {
+  border-radius: 5px;
+  padding: 1em;
+  margin: auto;
+  width: 70%;
+  list-style-type: none;
+  background-color: #BFBFBF;
+}
+
+.links li {
+  padding: 0.5em;
+}
+
 /* Mobile Styling */
 
 @media all and (max-width: 450px) {
